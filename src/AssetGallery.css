@@ -1,0 +1,252 @@
+/* Minimal styles for asset gallery - built for clarity and responsiveness */
+.asset-gallery-section {
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #fff, #f6f8fa);
+}
+
+/* parallax variables (updated from JS) */
+:root,
+.asset-gallery-section {
+  --mx: 0;
+  --my: 0;
+}
+.gallery-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.blob {
+  position: absolute;
+  filter: blur(30px);
+  opacity: 0.95;
+  transform: translate3d(0, 0, 0);
+}
+.blob-1 {
+  width: 420px;
+  height: 420px;
+  left: -80px;
+  top: -120px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #ff6b6b,
+    #ff9a9a 40%,
+    transparent 70%
+  );
+  animation: floaty 9s ease-in-out infinite;
+}
+.blob-2 {
+  width: 360px;
+  height: 360px;
+  right: -100px;
+  bottom: -80px;
+  background: radial-gradient(
+    circle at 70% 70%,
+    #4ecdc4,
+    #9be6d8 30%,
+    transparent 68%
+  );
+  animation: floaty 12s ease-in-out infinite reverse;
+}
+.stars {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  right: 8%;
+  top: 6%;
+  opacity: 0.6;
+  transform: translateZ(0);
+  animation: twinkle 6s linear infinite;
+}
+
+@keyframes floaty {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) translateX(8px) scale(1.03);
+  }
+  100% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.06);
+  }
+}
+.gallery-header {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 2;
+}
+.gallery-title {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.gallery-subtitle {
+  color: #666;
+}
+
+.swiper-wrapper-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.gallery-swiper .swiper-slide {
+  width: 420px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.6s cubic-bezier(0.2, 0.9, 0.2, 1),
+    box-shadow 0.3s;
+  transform-style: preserve-3d;
+  z-index: 1;
+}
+.asset-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s;
+}
+.image-wrapper:hover .asset-image {
+  transform: scale(1.12);
+}
+.asset-slide {
+  transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+.asset-slide .image-wrapper:hover {
+  transform: scale(1.03) translateZ(40px);
+  box-shadow: 0 20px 60px rgba(34, 40, 49, 0.25);
+}
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.45));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.image-wrapper:hover .image-overlay {
+  opacity: 1;
+}
+.overlay-content {
+  color: #fff;
+  text-align: center;
+}
+.image-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  border: 3px solid transparent;
+  pointer-events: none;
+}
+.corner-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ff6b6b;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+.slide-info {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 3;
+  color: #fff;
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+.slide-info h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    60% 40% at 10% 20%,
+    rgba(255, 255, 255, 0.06),
+    transparent 30%
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.gallery-info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  max-width: 1000px;
+  margin: 30px auto 0;
+}
+.info-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .gallery-swiper .swiper-slide {
+    width: 300px;
+    height: 220px;
+  }
+  .asset-gallery-section {
+    padding: 60px 16px;
+  }
+  .gallery-title {
+    font-size: 1.6rem;
+  }
+  .blob-1,
+  .blob-2 {
+    display: none;
+  }
+}
+@media (max-width: 420px) {
+  .gallery-swiper .swiper-slide {
+    width: 240px;
+    height: 170px;
+  }
+  .gallery-info-cards {
+    gap: 12px;
+  }
+}

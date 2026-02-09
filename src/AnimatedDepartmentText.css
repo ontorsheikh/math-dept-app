@@ -1,0 +1,663 @@
+/* ============================================================
+   ANIMATED DEPARTMENT TEXT ANIMATIONS
+   ============================================================ */
+
+@keyframes typeWriterReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cursorBlink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes underlineGrow {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes shadowPulse {
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: translateX(-2px) translateY(-2px) blur(1px);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateX(2px) translateY(2px) blur(2px);
+  }
+}
+
+@keyframes accentFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-15px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+@keyframes progressFill {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes highlightSlide {
+  0% {
+    transform: translateX(-110%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+}
+
+@keyframes highlightPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    filter: blur(3px);
+  }
+  50% {
+    opacity: 0.7;
+    filter: blur(1px);
+  }
+}
+
+@keyframes letterPop {
+  0% {
+    transform: scale(0) rotateX(90deg);
+  }
+  50% {
+    transform: scale(1.1) rotateX(0deg);
+  }
+  100% {
+    transform: scale(1) rotateX(0deg);
+  }
+}
+
+@keyframes letterShine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ============================================================
+   ANIMATED DEPARTMENT TEXT CONTAINER
+   ============================================================ */
+
+.animated-dept-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px 10px;
+  perspective: 1000px;
+}
+
+/* ============================================================
+   MAIN ANIMATED TEXT
+   ============================================================ */
+
+.animated-text-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+/* Highlight background */
+.highlight-bg {
+  position: absolute;
+  top: -12px;
+  left: -15px;
+  right: -15px;
+  bottom: -12px;
+  background: linear-gradient(
+    90deg,
+    #ff6b6b,
+    #4ecdc4,
+    #ffe66d,
+    #95e1d3,
+    #ff6b6b
+  );
+  background-size: 200% 100%;
+  border-radius: 15px;
+  z-index: 0;
+  animation: highlightPulse 2.5s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+.animated-dept-text {
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(78, 205, 196, 0.4);
+  line-height: 1.2;
+  padding: 10px 20px;
+  word-break: break-word;
+}
+
+.animated-dept-text .letter {
+  display: inline-block;
+  transform-origin: center;
+  animation: typeWriterReveal 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    forwards;
+  position: relative;
+  transition: all 0.3s ease;
+  font-weight: 900;
+}
+
+.animated-dept-text .letter:hover {
+  filter: drop-shadow(0 0 12px rgba(255, 107, 107, 0.8));
+  transform: scale(1.15);
+}
+
+/* Cursor animation */
+.cursor {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 1.8rem;
+  background: linear-gradient(180deg, #ff6b6b, #4ecdc4);
+  border-radius: 2px;
+  opacity: 0;
+  animation-delay: 2s;
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.6);
+}
+
+@keyframes cursorAppear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.cursor {
+  animation:
+    cursorAppear 0.3s ease-out 2s forwards,
+    cursorBlink 0.8s ease-in-out 2s infinite;
+}
+
+/* ============================================================
+   ACCENT ELEMENTS
+   ============================================================ */
+
+.accent-elements {
+  position: absolute;
+  width: 100%;
+  max-width: 100%;
+  height: 120px;
+  top: -50px;
+  left: 0;
+  pointer-events: none;
+}
+
+.accent {
+  position: absolute;
+  font-size: 1.4rem;
+  font-weight: bold;
+  animation: accentFloat 2.5s ease-in-out infinite;
+  text-shadow:
+    0 0 15px rgba(255, 107, 107, 0.6),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+.accent-1 {
+  top: 20px;
+  left: 15%;
+  color: #ff6b6b;
+  animation-delay: 0.3s;
+}
+
+.accent-2 {
+  top: 10px;
+  right: 20%;
+  color: #4ecdc4;
+  animation-delay: 0.8s;
+}
+
+.accent-3 {
+  top: 35px;
+  right: 5%;
+  color: #ffe66d;
+  animation-delay: 1.3s;
+}
+
+.accent-4 {
+  top: 18px;
+  left: 6%;
+  color: #95e1d3;
+  animation-delay: 1s;
+}
+
+.accent-5 {
+  top: 48px;
+  left: 28%;
+  color: #ffb86b;
+  animation-delay: 1.6s;
+}
+
+.accent-6 {
+  top: 12px;
+  right: 6%;
+  color: #c397ff;
+  animation-delay: 2s;
+}
+
+/* ============================================================
+   HOVER EFFECTS
+   ============================================================ */
+
+.animated-text-wrapper:hover .animated-dept-text {
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(78, 205, 196, 0.6);
+}
+
+.animated-text-wrapper:hover .letter {
+  filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.6));
+}
+
+/* College name below the department text, uses similar per-letter reveal */
+.college-line {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  z-index: 2;
+}
+.college-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+  animation: typeWriterReveal 0.38s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    forwards;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.6px;
+  color: white;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 768px) {
+  .college-letter {
+    font-size: 0.92rem;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+/* LARGE DESKTOP (1440px+) */
+@media (min-width: 1441px) {
+  .animated-dept-text {
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+    padding: 11px 18px;
+    line-height: 1.25;
+  }
+
+  .accent {
+    font-size: 1.7rem;
+  }
+}
+
+/* DESKTOP (1024px - 1440px) */
+@media (max-width: 1440px) and (min-width: 1025px) {
+  .animated-dept-text {
+    font-size: 1.8rem;
+    letter-spacing: 1.3px;
+    padding: 10px 17px;
+    line-height: 1.23;
+  }
+
+  .accent {
+    font-size: 1.5rem;
+  }
+
+  .cursor {
+    height: 1.8rem;
+  }
+}
+
+/* TABLET (1024px) */
+@media (max-width: 1024px) {
+  .animated-dept-text {
+    font-size: 1.5rem;
+    letter-spacing: 1.2px;
+    padding: 9px 16px;
+    line-height: 1.2;
+  }
+
+  .highlight-bg {
+    top: -10px;
+    bottom: -10px;
+    left: -12px;
+    right: -12px;
+  }
+
+  .accent {
+    font-size: 1.3rem;
+  }
+
+  .cursor {
+    height: 1.5rem;
+  }
+}
+
+/* TABLET LANDSCAPE (912px - 1024px) */
+@media (max-width: 1024px) and (min-width: 913px) {
+  .animated-dept-text {
+    font-size: 1.6rem;
+    letter-spacing: 1.25px;
+    padding: 9.5px 16px;
+  }
+
+  .accent {
+    font-size: 1.4rem;
+  }
+}
+
+/* LARGE TABLET (768px - 912px) */
+@media (max-width: 912px) {
+  .animated-dept-container {
+    padding: 13px 9px;
+  }
+
+  .animated-dept-text {
+    font-size: 1.4rem;
+    letter-spacing: 1.1px;
+    padding: 8.5px 15px;
+    line-height: 1.18;
+  }
+
+  .highlight-bg {
+    top: -9px;
+    bottom: -9px;
+    left: -11px;
+    right: -11px;
+  }
+
+  .accent {
+    font-size: 1.25rem;
+  }
+
+  .accent-elements {
+    height: 110px;
+    top: -42px;
+  }
+
+  .cursor {
+    height: 1.4rem;
+  }
+}
+
+/* MOBILE LANDSCAPE & LARGE PHONES (600px - 768px) */
+@media (max-width: 768px) {
+  .animated-dept-container {
+    padding: 12px 8px;
+  }
+
+  .animated-dept-text {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    padding: 8px 14px;
+    line-height: 1.15;
+  }
+
+  .highlight-bg {
+    top: -8px;
+    bottom: -8px;
+    left: -10px;
+    right: -10px;
+    border-radius: 12px;
+  }
+
+  .accent {
+    font-size: 1.1rem;
+  }
+
+  .accent-elements {
+    height: 100px;
+    top: -40px;
+  }
+
+  .cursor {
+    right: -15px;
+    height: 1.3rem;
+    width: 3px;
+  }
+}
+
+/* TABLET PORTRAIT (768px) */
+@media (max-width: 768px) and (min-width: 601px) {
+  .animated-dept-container {
+    padding: 12px 9px;
+  }
+
+  .animated-dept-text {
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+  }
+
+  .accent {
+    font-size: 1.1rem;
+  }
+}
+
+/* STANDARD PHONE (600px) */
+@media (max-width: 600px) {
+  .animated-dept-container {
+    padding: 10px 6px;
+  }
+
+  .animated-dept-text {
+    font-size: 1.1rem;
+    letter-spacing: 0.8px;
+    padding: 6px 10px;
+    line-height: 1.1;
+  }
+
+  .highlight-bg {
+    top: -6px;
+    bottom: -6px;
+    left: -8px;
+    right: -8px;
+    border-radius: 10px;
+  }
+
+  .accent {
+    font-size: 0.95rem;
+  }
+
+  .accent-elements {
+    height: 80px;
+    top: -35px;
+  }
+
+  .accent-1 {
+    left: 10%;
+  }
+
+  .accent-2 {
+    right: 15%;
+  }
+
+  .accent-3 {
+    right: 3%;
+  }
+
+  .cursor {
+    display: none;
+  }
+}
+
+/* LARGE MOBILE (500px - 600px) */
+@media (max-width: 600px) and (min-width: 481px) {
+  .animated-dept-text {
+    font-size: 1.05rem;
+    letter-spacing: 0.8px;
+  }
+
+  .accent {
+    font-size: 0.95rem;
+  }
+}
+
+/* STANDARD MOBILE (480px) */
+@media (max-width: 480px) {
+  .animated-dept-container {
+    padding: 8px 5px;
+  }
+
+  .animated-dept-text {
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    padding: 5px 8px;
+    line-height: 1.05;
+  }
+
+  .highlight-bg {
+    top: -4px;
+    bottom: -4px;
+    left: -6px;
+    right: -6px;
+    border-radius: 8px;
+  }
+
+  .accent {
+    font-size: 0.85rem;
+  }
+
+  .accent-elements {
+    height: 50px;
+    top: -20px;
+  }
+
+  .accent-1 {
+    left: 5%;
+    top: 10px;
+  }
+
+  .accent-2 {
+    right: 10%;
+    top: 0px;
+  }
+
+  .accent-3 {
+    right: 2%;
+    top: 18px;
+  }
+}
+
+/* SMALL MOBILE (420px - 480px) */
+@media (max-width: 480px) and (min-width: 361px) {
+  .animated-dept-text {
+    font-size: 0.98rem;
+    letter-spacing: 0.6px;
+  }
+
+  .accent {
+    font-size: 0.87rem;
+  }
+}
+
+/* ULTRA SMALL PHONES (360px) */
+@media (max-width: 360px) {
+  .animated-dept-container {
+    padding: 7px 4px;
+  }
+
+  .animated-dept-text {
+    font-size: 0.88rem;
+    letter-spacing: 0.3px;
+    padding: 4px 6px;
+    line-height: 1;
+  }
+
+  .highlight-bg {
+    top: -3px;
+    bottom: -3px;
+    left: -5px;
+    right: -5px;
+    border-radius: 6px;
+  }
+
+  .accent {
+    font-size: 0.78rem;
+  }
+
+  .accent-elements {
+    height: 40px;
+    top: -15px;
+  }
+
+  .accent-1 {
+    left: 3%;
+    top: 8px;
+  }
+
+  .accent-2 {
+    right: 8%;
+    top: -2px;
+  }
+
+  .accent-3 {
+    right: 1%;
+    top: 15px;
+  }
+}

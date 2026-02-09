@@ -1,0 +1,63 @@
+/* Reset and Base Styles */
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  /* Base font setup: set a clear default and prevent mobile text auto-zoom */
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Set a sensible base font size so rems scale predictably across devices. */
+html {
+  font-size: 16px; /* desktop default */
+  -webkit-text-size-adjust: 100%; /* prevent iOS from auto-scaling text */
+  -ms-text-size-adjust: 100%;
+}
+
+/* Slightly larger base font on wide screens for readability */
+@media (min-width: 1200px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* Slightly smaller base font on very small devices */
+@media (max-width: 360px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+code {
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+/* Smooth transitions globally */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  font-size: 1rem; /* ensure body text uses rems consistently */
+  line-height: 1.6;
+  color: #2c3e50;
+}

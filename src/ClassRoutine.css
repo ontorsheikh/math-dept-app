@@ -1,0 +1,708 @@
+/* ============================================================
+   CLASS ROUTINE ANIMATIONS
+   ============================================================ */
+
+@keyframes imageZoom {
+  0% {
+    transform: scale(0.8) translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(255, 107, 107, 0.3),
+      0 0 40px rgba(78, 205, 196, 0.2),
+      inset 0 0 20px rgba(255, 107, 107, 0.05);
+  }
+  50% {
+    box-shadow:
+      0 0 40px rgba(255, 107, 107, 0.6),
+      0 0 80px rgba(78, 205, 196, 0.4),
+      inset 0 0 30px rgba(255, 107, 107, 0.1);
+  }
+}
+
+@keyframes borderRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cornerPulse {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2) rotate(90deg);
+    opacity: 1;
+  }
+}
+
+@keyframes floatElement {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+@keyframes badgeSlide {
+  0% {
+    transform: translateX(-50px) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes titleReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes buttonHoverPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* ============================================================
+   CLASS ROUTINE SECTION
+   ============================================================ */
+
+.class-routine-section {
+  padding: 100px 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 107, 0.03) 0%,
+    rgba(78, 205, 196, 0.03) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.routine-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   ROUTINE HEADER
+   ============================================================ */
+
+.routine-header {
+  text-align: center;
+  margin-bottom: 60px;
+  animation: titleReveal 0.8s ease-out;
+}
+
+.routine-title {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  color: #2c3e50;
+}
+
+.title-word {
+  background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #ffe66d);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  animation: titleReveal 0.8s ease-out;
+}
+
+.title-word:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.routine-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  font-weight: 500;
+  animation: fadeIn 0.8s ease-out 0.2s both;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   ROUTINE IMAGE WRAPPER
+   ============================================================ */
+
+.routine-image-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.routine-bg-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 107, 107, 0.1) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: glowPulse 4s ease-in-out infinite;
+  z-index: 0;
+}
+
+.routine-border-animate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: auto;
+  border: 3px solid transparent;
+  border-image: linear-gradient(135deg, #ff6b6b, #4ecdc4, #ffe66d, #ff6b6b) 1;
+  border-radius: 20px;
+  animation: borderRotate 15s linear infinite;
+  pointer-events: none;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.routine-image-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  animation: imageZoom 0.8s ease-out;
+}
+
+.routine-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.15),
+    0 0 40px rgba(255, 107, 107, 0.2),
+    0 0 80px rgba(78, 205, 196, 0.1);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation: glowPulse 3s ease-in-out infinite;
+  width: 100%;
+  max-width: 600px;
+  display: block;
+}
+
+.routine-image:hover {
+  transform: scale(1.03) translateY(-5px);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.25),
+    0 0 60px rgba(255, 107, 107, 0.3),
+    0 0 120px rgba(78, 205, 196, 0.2);
+}
+
+/* ============================================================
+   CORNER ACCENTS
+   ============================================================ */
+
+.corner-accent {
+  position: absolute;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ff6b6b;
+  animation: cornerPulse 2s ease-in-out infinite;
+  z-index: 3;
+}
+
+.corner-top-left {
+  top: -15px;
+  left: -15px;
+  animation-delay: 0s;
+}
+
+.corner-top-right {
+  top: -15px;
+  right: -15px;
+  animation-delay: 0.3s;
+}
+
+.corner-bottom-left {
+  bottom: -15px;
+  left: -15px;
+  animation-delay: 0.6s;
+}
+
+.corner-bottom-right {
+  bottom: -15px;
+  right: -15px;
+  animation-delay: 0.9s;
+}
+
+/* ============================================================
+   FLOATING ELEMENTS
+   ============================================================ */
+
+.floating-element {
+  position: absolute;
+  font-size: 2rem;
+  font-weight: bold;
+  animation: floatElement 3s ease-in-out infinite;
+  color: #4ecdc4;
+  filter: drop-shadow(0 0 10px rgba(78, 205, 196, 0.4));
+  z-index: 3;
+}
+
+.element-1 {
+  top: -40px;
+  left: 5%;
+  color: #ff6b6b;
+  animation-delay: 0s;
+}
+
+.element-2 {
+  top: 10%;
+  right: -30px;
+  color: #4ecdc4;
+  animation-delay: 0.5s;
+}
+
+.element-3 {
+  bottom: 10%;
+  left: -30px;
+  color: #ffe66d;
+  animation-delay: 1s;
+}
+
+.element-4 {
+  bottom: -40px;
+  right: 5%;
+  color: #95e1d3;
+  animation-delay: 1.5s;
+}
+
+/* ============================================================
+   ROUTINE BADGE
+   ============================================================ */
+
+.routine-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: -30px;
+  position: relative;
+  z-index: 4;
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+  animation: badgeSlide 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.badge-icon {
+  font-size: 1.4rem;
+  animation: bounce 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+.badge-text {
+  letter-spacing: 0.5px;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ============================================================
+   ROUTINE CTA
+   ============================================================ */
+
+.routine-cta {
+  text-align: center;
+  margin-top: 50px;
+  animation: fadeIn 0.8s ease-out 0.4s both;
+}
+
+.cta-text {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.cta-button {
+  background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  animation: slideInUp 0.8s ease-out 0.5s both;
+}
+
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4);
+  animation: buttonHoverPulse 0.6s ease-in-out;
+}
+
+.cta-button:active {
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .class-routine-section {
+    padding: 80px 20px;
+  }
+
+  .routine-title {
+    font-size: 2.5rem;
+    gap: 10px;
+  }
+
+  .routine-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .routine-bg-glow {
+    width: 400px;
+    height: 400px;
+  }
+
+  .corner-accent {
+    font-size: 2rem;
+  }
+
+  .floating-element {
+    font-size: 1.8rem;
+  }
+
+  .routine-badge {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .class-routine-section {
+    padding: 60px 15px;
+  }
+
+  .routine-header {
+    margin-bottom: 50px;
+  }
+
+  .routine-title {
+    font-size: 2rem;
+    gap: 8px;
+  }
+
+  .routine-subtitle {
+    font-size: 1rem;
+  }
+
+  .routine-image {
+    max-width: 100%;
+    border-radius: 15px;
+  }
+
+  .routine-bg-glow {
+    width: 300px;
+    height: 300px;
+  }
+
+  .corner-accent {
+    font-size: 1.8rem;
+    top: -10px !important;
+    left: -10px !important;
+    bottom: -10px !important;
+    right: -10px !important;
+  }
+
+  .floating-element {
+    font-size: 1.5rem;
+  }
+
+  .routine-badge {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    margin-top: -25px;
+  }
+
+  .routine-cta {
+    margin-top: 40px;
+  }
+
+  .cta-text {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    padding: 12px 30px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .class-routine-section {
+    padding: 50px 12px;
+  }
+
+  .routine-header {
+    margin-bottom: 40px;
+  }
+
+  .routine-title {
+    font-size: 1.6rem;
+    gap: 6px;
+  }
+
+  .routine-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .routine-image-wrapper {
+    margin-bottom: 30px;
+  }
+
+  .routine-image {
+    border-radius: 12px;
+  }
+
+  .routine-bg-glow {
+    width: 250px;
+    height: 250px;
+  }
+
+  .corner-accent {
+    font-size: 1.5rem;
+  }
+
+  .floating-element {
+    font-size: 1.3rem;
+  }
+
+  .element-1 {
+    top: -30px;
+    left: 10%;
+  }
+
+  .element-2 {
+    top: 15%;
+    right: -20px;
+  }
+
+  .element-3 {
+    bottom: 15%;
+    left: -20px;
+  }
+
+  .element-4 {
+    bottom: -30px;
+    right: 10%;
+  }
+
+  .routine-badge {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    margin-top: -20px;
+    gap: 8px;
+  }
+
+  .badge-icon {
+    font-size: 1.2rem;
+  }
+
+  .routine-cta {
+    margin-top: 30px;
+  }
+
+  .cta-text {
+    font-size: 0.95rem;
+  }
+
+  .cta-button {
+    padding: 10px 24px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .class-routine-section {
+    padding: 40px 10px;
+  }
+
+  .routine-header {
+    margin-bottom: 35px;
+  }
+
+  .routine-title {
+    font-size: 1.4rem;
+  }
+
+  .routine-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .routine-image-wrapper {
+    margin-bottom: 25px;
+  }
+
+  .routine-image {
+    border-radius: 10px;
+  }
+
+  .routine-bg-glow {
+    width: 200px;
+    height: 200px;
+  }
+
+  .corner-accent {
+    font-size: 1.2rem;
+  }
+
+  .floating-element {
+    font-size: 1rem;
+  }
+
+  .routine-badge {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    margin-top: -15px;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .badge-icon {
+    font-size: 1rem;
+  }
+
+  .routine-cta {
+    margin-top: 25px;
+  }
+
+  .cta-text {
+    font-size: 0.9rem;
+  }
+
+  .cta-button {
+    padding: 8px 20px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .class-routine-section {
+    padding: 30px 8px;
+  }
+
+  .routine-title {
+    font-size: 1.2rem;
+  }
+
+  .routine-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .routine-image {
+    border-radius: 8px;
+  }
+
+  .routine-bg-glow {
+    width: 150px;
+    height: 150px;
+  }
+
+  .corner-accent {
+    font-size: 1rem;
+  }
+
+  .floating-element {
+    font-size: 0.9rem;
+  }
+
+  .routine-badge {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+
+  .cta-button {
+    padding: 6px 16px;
+    font-size: 0.75rem;
+  }
+}

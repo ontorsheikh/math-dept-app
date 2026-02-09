@@ -1,0 +1,531 @@
+/* ============================================================
+   MATH GRAPHICS ANIMATIONS
+   ============================================================ */
+
+@keyframes rotateLogo {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes glowPulseMain {
+  0%, 100% {
+    opacity: 0.5;
+    filter: blur(8px);
+  }
+  50% {
+    opacity: 0.9;
+    filter: blur(20px);
+  }
+}
+
+@keyframes piPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.5));
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 20px rgba(78, 205, 196, 0.8));
+  }
+}
+
+@keyframes orbitRotate1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitRotate2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes orbitRotate3 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitElementBounce {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.2) translateY(-5px);
+  }
+}
+
+@keyframes shapeAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+@keyframes shapeFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+@keyframes shapeRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gridSlide {
+  0% {
+    opacity: 0;
+    transform: translate(-10px, -10px);
+  }
+  100% {
+    opacity: 0.3;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(100px) translateX(0) scale(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) translateX(var(--particle-x, 0)) scale(1);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ============================================================
+   MATH GRAPHICS CONTAINER
+   ============================================================ */
+
+.math-graphics-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+/* ============================================================
+   MAIN LOGO
+   ============================================================ */
+
+.main-logo {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  animation: slideInUp 0.8s ease-out;
+}
+
+.logo-svg {
+  width: 100%;
+  height: 100%;
+  animation: rotateLogo 10s linear infinite;
+  filter: drop-shadow(0 10px 30px rgba(255, 107, 107, 0.2));
+}
+
+.outer-circle {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: rotateLogo 6s ease-in-out infinite;
+}
+
+.pi-symbol {
+  animation: piPulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px rgba(255, 107, 107, 0.4));
+}
+
+/* Orbits */
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+
+.orbit-1 {
+  animation: orbitRotate1 8s linear infinite;
+}
+
+.orbit-2 {
+  animation: orbitRotate2 10s linear infinite;
+  animation-delay: 1s;
+}
+
+.orbit-3 {
+  animation: orbitRotate3 12s linear infinite;
+  animation-delay: 2s;
+}
+
+.orbit-element {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.8rem;
+  font-weight: bold;
+  animation: orbitElementBounce 2s ease-in-out infinite;
+  color: #FF6B6B;
+  text-shadow: 0 0 10px rgba(255, 107, 107, 0.6);
+}
+
+.orbit-1 .orbit-element {
+  color: #FF6B6B;
+  top: 10px;
+  animation-delay: 0s;
+}
+
+.orbit-2 .orbit-element {
+  color: #4ECDC4;
+  top: 15px;
+  animation-delay: 0.5s;
+}
+
+.orbit-3 .orbit-element {
+  color: #FFE66D;
+  top: 20px;
+  animation-delay: 1s;
+}
+
+/* Logo Glow */
+.logo-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(255, 107, 107, 0.3), transparent);
+  border-radius: 50%;
+  animation: glowPulseMain 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ============================================================
+   FLOATING SHAPES
+   ============================================================ */
+
+.floating-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.shape {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FF6B6B;
+  animation: shapeAppear 0.8s ease-out backwards, shapeFloat 4s ease-in-out infinite;
+  animation-delay: var(--shape-delay);
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+}
+
+.shape svg {
+  width: 100%;
+  height: 100%;
+}
+
+.triangle {
+  top: 10px;
+  left: 40px;
+  color: #FF6B6B;
+  animation-delay: var(--shape-delay);
+}
+
+.triangle svg {
+  animation: shapeRotate 4s linear infinite;
+}
+
+.circle {
+  top: 15px;
+  right: 30px;
+  color: #4ECDC4;
+  animation-delay: var(--shape-delay);
+}
+
+.circle svg {
+  animation: shapeRotate 5s linear infinite reverse;
+}
+
+.square {
+  bottom: 30px;
+  left: 20px;
+  color: #FFE66D;
+  animation-delay: var(--shape-delay);
+}
+
+.square svg {
+  animation: shapeRotate 3.5s linear infinite;
+}
+
+.wave {
+  bottom: 20px;
+  right: 40px;
+  color: #95E1D3;
+  animation-delay: var(--shape-delay);
+}
+
+.wave svg {
+  animation: shapeRotate 6s linear infinite reverse;
+}
+
+.hexagon {
+  top: 50%;
+  right: 15px;
+  color: #FF8E72;
+  animation-delay: var(--shape-delay);
+}
+
+.hexagon svg {
+  animation: shapeRotate 4.5s linear infinite;
+}
+
+/* ============================================================
+   GRID BACKGROUND
+   ============================================================ */
+
+.grid-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.2;
+}
+
+.grid-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, #FF6B6B, transparent);
+  animation: gridSlide 2s ease-out forwards;
+}
+
+.grid-h-1 {
+  width: 100%;
+  height: 1px;
+  top: 33%;
+  left: 0;
+  animation-delay: 0s;
+}
+
+.grid-h-2 {
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  left: 0;
+  animation-delay: 0.3s;
+}
+
+.grid-h-3 {
+  width: 100%;
+  height: 1px;
+  top: 67%;
+  left: 0;
+  animation-delay: 0.6s;
+}
+
+.grid-v-1 {
+  width: 1px;
+  height: 100%;
+  left: 33%;
+  top: 0;
+  background: linear-gradient(180deg, transparent, #4ECDC4, transparent);
+  animation-delay: 0.15s;
+}
+
+.grid-v-2 {
+  width: 1px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  background: linear-gradient(180deg, transparent, #FFE66D, transparent);
+  animation-delay: 0.45s;
+}
+
+.grid-v-3 {
+  width: 1px;
+  height: 100%;
+  left: 67%;
+  top: 0;
+  background: linear-gradient(180deg, transparent, #95E1D3, transparent);
+  animation-delay: 0.75s;
+}
+
+/* ============================================================
+   PARTICLES
+   ============================================================ */
+
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: particleFloat 3s ease-out infinite backwards;
+}
+
+.particle:nth-child(1) {
+  left: 20%;
+  background: #FF6B6B;
+  animation-delay: 0s;
+  --particle-x: 30px;
+}
+
+.particle:nth-child(2) {
+  left: 30%;
+  background: #4ECDC4;
+  animation-delay: 0.4s;
+  --particle-x: -30px;
+}
+
+.particle:nth-child(3) {
+  left: 50%;
+  background: #FFE66D;
+  animation-delay: 0.8s;
+  --particle-x: 50px;
+}
+
+.particle:nth-child(4) {
+  left: 70%;
+  background: #95E1D3;
+  animation-delay: 1.2s;
+  --particle-x: -50px;
+}
+
+.particle:nth-child(5) {
+  left: 80%;
+  background: #FF8E72;
+  animation-delay: 1.6s;
+  --particle-x: 30px;
+}
+
+.particle:nth-child(6) {
+  left: 15%;
+  background: #FF6B6B;
+  animation-delay: 0.2s;
+  --particle-x: -30px;
+}
+
+.particle:nth-child(7) {
+  left: 45%;
+  background: #4ECDC4;
+  animation-delay: 1s;
+  --particle-x: 40px;
+}
+
+.particle:nth-child(8) {
+  left: 75%;
+  background: #FFE66D;
+  animation-delay: 1.8s;
+  --particle-x: -40px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .math-graphics-container {
+    max-width: 400px;
+    height: 350px;
+  }
+
+  .main-logo {
+    width: 200px;
+    height: 200px;
+  }
+
+  .shape {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo-glow {
+    width: 230px;
+    height: 230px;
+  }
+}
+
+@media (max-width: 480px) {
+  .math-graphics-container {
+    max-width: 300px;
+    height: 300px;
+  }
+
+  .main-logo {
+    width: 150px;
+    height: 150px;
+  }
+
+  .shape {
+    width: 50px;
+    height: 50px;
+  }
+
+  .logo-glow {
+    width: 180px;
+    height: 180px;
+  }
+
+  .orbit-element {
+    font-size: 1.2rem;
+  }
+}
